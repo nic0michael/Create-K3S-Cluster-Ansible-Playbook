@@ -1,0 +1,12 @@
+[primaryNode]
+kudu.loseyourip.com ansible_host=10.154.2.93 k3s_token="K10d80e2607d2b372531758ff421af503d06c02c1992f41ce09cc57db40f45c0f5f::server:c65119161dbfdabefde333a2ce02744a"
+
+[otherMasterNodes]
+leopard.loseyourip.com ansible_host=10.154.2.95
+node1.loseyourip.com ansible_host=10.154.2.96
+node2.loseyourip.com ansible_host=10.154.2.98
+# Add more master nodes as needed
+
+[workernodes]
+lion.loseyourip.com ansible_host=10.154.2.97
+tiger.loseyourip.com ansible_host=10.154.2.99
