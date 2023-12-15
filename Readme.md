@@ -26,15 +26,19 @@ playbooks/create_primary_master_node.yml: Specifies the path to the playbook you
 
 ## 3. The Node Servers for Cluster Deployment
 ```
+Primary Master Node
 tiger.loseyourip.com
 10.154.2.91
 
+Second Master Node
 kudu.loseyourip.com
 10.154.2.93 
 
+Worker Node
 leopard.loseyourip.com
 10.154.2.95 	
   
+Worker Node  
 lion.loseyourip.com
 10.154.2.97
 ```
