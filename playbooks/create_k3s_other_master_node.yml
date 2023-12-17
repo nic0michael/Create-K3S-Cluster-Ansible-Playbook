@@ -8,10 +8,10 @@
   tasks:
     - name: Execute k3s_node_maker.j2 template for OTHER_MASTER_NODE
       template:
-        src: k3s_node_maker.j2
-        dest: /path/to/output/other_master_node.sh
+        src: templates/k3s_node_maker.j2
+        dest: /opt/semaphore/Create-K3S-Cluster-Ansible-Playbook/playbooks/other_master_node.sh
       vars:
-        node_type: "OTHER_MASTER_NODE"
+        node_type: "{{ node_type }}"
         node_name: "{{ node_name }}"
         master_node_ip_address: "{{ master_node_ip_address }}"
         k3s_token: "{{ k3s_token }}"
