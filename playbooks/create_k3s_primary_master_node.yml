@@ -9,7 +9,7 @@
     - name: Execute k3s_node_maker.j2 template for 1ST_MASTER_NODE
       template:
         src: ../templates/k3s_node_maker.j2
-        dest: {{  dest_file }}
+        dest: "{{ dest_file }}"
       vars:
         node_type: "{{ node_type }}"
         node_name: "{{ node_name }}"
@@ -20,3 +20,5 @@
       file:
         path: "{{ dest_file }}"
         mode: "775"
+
+
