@@ -10,7 +10,7 @@
     - name: Execute k3s_node_maker.j2 template for WORKER_NODE
       template:
         src: ../templates/k3s_node_maker.j2
-        dest: {{  dest_file }}
+        dest: "{{ dest_file }}"
       vars:
         node_type: "WORKER_NODE"
         node_name: "{{ node_name }}"
