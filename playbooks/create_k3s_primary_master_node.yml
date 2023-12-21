@@ -5,6 +5,7 @@
     node_name: "{{ node_name }}"
     master_node_ip_address: "{{ master_node_ip_address }}"
     dest_file: "/opt/k3s/{{ destination_file }}"
+    scp_script_path: "/opt/k3s/{{scp_file}}"
   tasks:
     - name: Execute k3s_node_maker.j2 template for 1ST_MASTER_NODE
       template:
