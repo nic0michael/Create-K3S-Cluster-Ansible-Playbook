@@ -21,12 +21,25 @@
         path: "{{ dest_file }}"
         mode: "775"
 
-    - name: Run the shell script on the server with a timeout of 20 seconds
-      shell: "/opt/k3s/1st_master_node.sh"
-      args:
-        chdir: "/opt/k3s"
-      delegate_to: "{{ node_name }}"
-      timeout: 20
+    - name: Create SCP script
+      copy:
+        content: |
+          #!/bin/bash
+
+          # Replace placeholders with actual values
+          SSH_USER="nickm"
+          MASTER_NODE_IP="10.154.2.80"
+          SCRIPT_PATH="/opt/k3s/1st_master_node.sh"
+          DESTINATION="/opt/k3s/1st_master_node.sh"
+
+          # Run SCP command
+          scp -o StrictHostKeyChecking=no "$SCRIPT_PATH" "$SSH_USER@$MASTER_NODE_IP:$DESTINATION"
+        dest: "{{ scp_script_path }}"
+        mode: "0755"  # Adjust permissions as needed
+
+    - name: Run SCP script to copy 1st_master_node.sh
+      command: "{{ scp_script_path }}"
+
 
 
     
