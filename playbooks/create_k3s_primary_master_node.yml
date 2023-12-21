@@ -21,9 +21,13 @@
         path: "{{ dest_file }}"
         mode: "775"
 
-    - name: Copy 1st_master_node.sh using SCP
-      command: scp /opt/k3s/1st_master_node.sh nickm@{{ master_node_ip_address }}:/opt/k3s/1st_master_node.sh
-      delegate_to: localhost
+    - name: Run the shell script on the server with a timeout of 20 seconds
+      shell: "/opt/k3s/1st_master_node.sh"
+      args:
+        chdir: "/opt/k3s"
+      delegate_to: "{{ node_name }}"
+      timeout: 20
+
 
     
 
