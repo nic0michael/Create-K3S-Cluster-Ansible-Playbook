@@ -1,3 +1,4 @@
+# create_k3s_other_master_node.yml
 - name: Create Other Master Node
   hosts: localhost
   gather_facts: false
