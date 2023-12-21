@@ -1,7 +1,12 @@
+**The instructions for using this project can be found here** \
+http://rino.kozow.com/devops/posts/create-k3s-cluster-ansible-playbook/ \
+On this page, we will provide a link to our YouTube video with instructions for creating this on your Proxmox Homelab
+
+
 We provide you with two options:
-1. Run the playbooks using commands fron the terminal and values in the Inventory file and passed as variables
+1. Run the playbooks using commands from the terminal and values in the Inventory file and pass them as variables
 2. Using Semaphore to automate this process from the Browser
-Instrustions are provided for both options
+Instructions are provided for both options
 
 ## 1. Running the create_k3s_primary_master_node.yml Playbook
 If you want to run the  create_k3s_primary_master_node.yml from the terminal \
@@ -21,7 +26,7 @@ playbooks/create_primary_master_node.yml: Specifies the path to the playbook you
 -e "master_node_ip_address=10.154.2.91": Passes the master_node_ip_address variable with the value 10.154.2.91 to the playbook.
 
 ## 2. Running these Playbooks from Semaphore
-**Please refer to our readme.md file for more detains on using Semaphore:** \
+**Please refer to our readme.md file for more details on using Semaphore:** \
 [Click this link to read this document](https://github.com/nic0michael/create-k3s-cluster-playbook-generator/tree/master/Semaphore)
 
 ## 3. The Node Servers for Cluster Deployment
