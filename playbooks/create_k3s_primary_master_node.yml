@@ -22,14 +22,14 @@
         path: "{{ dest_file }}"
         mode: "775"
 
-    - name: Create SCP script in /opt/k3s
+    - name: Create SCP script in {{ scp_script_path }}
       template:
         src: scp_script_template.j2
         dest: "{{ scp_script_path }}"
-        mode: "0755"
+        mode: "0775"
       vars:
-        ssh_user: "{{ nickm_username }}"
-        ssh_password: "{{ nickm_password }}"
+        ssh_user: "{{ username }}"
+        ssh_password: "{{ password }}"
         master_node_ip: "10.154.2.80"
         script_path: "/opt/k3s/1st_master_node.sh"
         destination_path: "/opt/k3s/1st_master_node.sh"
