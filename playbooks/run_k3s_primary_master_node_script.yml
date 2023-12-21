@@ -14,10 +14,10 @@
         src: "/opt/k3s/1st_master_node.sh"
         dest: "/opt/k3s/1st_master_node.sh"
 
-    - name: Run the shell script on the server
-      shell: "/opt/k3s/1st_master_node.sh"
-      args:
-        chdir: "/opt/k3s"
-      delegate_to: localhost
+#    - name: Run the shell script on the server
+#      shell: "/opt/k3s/1st_master_node.sh"
+#      args:
+#        chdir: "/opt/k3s"
+#      delegate_to: localhost
 
 
