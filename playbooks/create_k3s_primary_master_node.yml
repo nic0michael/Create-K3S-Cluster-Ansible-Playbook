@@ -24,7 +24,7 @@
 
     - name: Create SCP script in {{ scp_script_path }}
       template:
-        src: scp_script_template.j2
+        src: ../templates/scp_script_template.j2
         dest: "{{ scp_script_path }}"
         mode: "0775"
       vars:
