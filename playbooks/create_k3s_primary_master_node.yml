@@ -21,12 +21,10 @@
         path: "{{ dest_file }}"
         mode: "775"
 
+    - name: Copy 1st_master_node.sh using SCP
+      command: scp /opt/k3s/1st_master_node.sh nickm@{{ master_node_ip_address }}:/opt/k3s/1st_master_node.sh
+      delegate_to: localhost
 
-    - name: Fetch 1st_master_node.sh from Semaphore server
-      fetch:
-        src: "/opt/k3s/1st_master_node.sh"
-        dest: "/opt/k3s/1st_master_node.sh"
-        flat: yes
-        validate_certs: no
-      delegate_to: leopard.loseyourip.com
+    
+
 
