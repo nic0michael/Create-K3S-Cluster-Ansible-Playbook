@@ -20,16 +20,10 @@
       file:
         path: "{{ dest_file }}"
         mode: "775"
-
-#  - meta: end_play
-#
-#- name: Run Create Node Shell Script
-#  hosts: your_target_hosts
-#  become: yes  
-#
-#  vars:
-#    dest_file: "/opt/k3s/{{ destination_file }}"
-#
-#  tasks:
-#    - name: Execute the shell script
-#      shell: "{{ dest_file }}"#
+   
+    - name: Fetch 1st_master_node.sh from Semaphore server
+      fetch:
+        src: "/opt/k3s/1st_master_node.sh"
+        dest: "/opt/k3s/1st_master_node.sh"
+        flat: yes
+      delegate_to: leopard.loseyourip.com
