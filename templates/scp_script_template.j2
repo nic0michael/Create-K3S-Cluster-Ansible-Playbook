@@ -9,5 +9,5 @@ SCRIPT_PATH="{{ script_path }}"
 DESTINATION="{{ destination_path }}"
 
 # Run SCP command from semaphore server to the destination
-sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no "{{ ssh_user }}@{{ master_node_ip }}:{{ script_path }}" "{{ destination_path }}"
+sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no "{{ script_path }}" "{{ ssh_user }}@{{ master_node_ip }}:{{ destination_path }}" 
 

@@ -1,4 +1,3 @@
-# create_k3s_primary_master_node.yml
 - name: Create Primary Master Node
   hosts: localhost
   gather_facts: false
@@ -6,7 +5,8 @@
     node_name: "{{ node_name }}"
     master_node_ip_address: "{{ master_node_ip_address }}"
     dest_file: "/opt/k3s/{{ destination_file }}"
-    scp_script_path: "/opt/k3s/{{scp_file}}"
+    scp_script_path: "/opt/k3s/{{ scp_file }}"
+    username: "{{ username }}"  # Define the username variable here
   tasks:
     - name: Execute k3s_node_maker.j2 template for 1ST_MASTER_NODE
       template:
@@ -16,12 +16,15 @@
         node_type: "{{ node_type }}"
         node_name: "{{ node_name }}"
         master_node_ip_address: "{{ master_node_ip_address }}"
+      become: true  # If escalated permissions are needed
 
     - name: Change file permissions of other_master_node.sh
-      become: true  # This will escalate privileges if required
+      become: true
       file:
         path: "{{ dest_file }}"
         mode: "775"
+        owner: "{{ username }}"  # Set the owner here
+        group: "{{ username }}"  # Set the group here
 
     - name: Create SCP script in {{ scp_script_path }}
       template:
@@ -34,12 +37,15 @@
         master_node_ip: "10.154.2.80"
         script_path: "/opt/k3s/1st_master_node.sh"
         destination_path: "/opt/k3s/1st_master_node.sh"
+      become: true  # If escalated permissions are needed
 
-#    - name: Run SCP script to copy 1st_master_node.sh
-#      command: "{{ scp_script_path }}"
+    - name: Change ownership of the SCP script
+      file:
+        path: "{{ scp_script_path }}"
+        owner: "{{ username }}"  # Set the owner here
+        group: "{{ username }}"  # Set the group here
+        mode: "0775"
 
-
-
-    
-
+    # - name: Run SCP script to copy 1st_master_node.sh
+    #   command: "{{ scp_script_path }}"
 
