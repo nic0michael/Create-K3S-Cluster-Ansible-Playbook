@@ -1,7 +1,7 @@
 # run_k3s_primary_master_node_script.yml
 ---
 - name: Run K3s Primary Master Node Script
-  hosts: "{{ master_node_ip_address }}"
+  hosts: "{{ node_name }}"
   gather_facts: false
   tasks:
     - name: Run the script on the server
