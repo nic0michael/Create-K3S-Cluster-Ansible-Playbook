@@ -1,3 +1,4 @@
+# scp_script_template.j2
 #!/bin/bash
 
 # Replace placeholders with actual values
@@ -7,7 +8,6 @@ MASTER_NODE_IP="{{ master_node_ip }}"
 SCRIPT_PATH="{{ script_path }}"
 DESTINATION="{{ destination_path }}"
 
-# Run SCP command
-sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no "$SCRIPT_PATH" "$SSH_USER@$MASTER_NODE_IP:$DESTINATION"
-
+# Run SCP command from semaphore server to the destination
+sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no "{{ ssh_user }}@{{ master_node_ip }}:{{ script_path }}" "{{ destination_path }}"
 
