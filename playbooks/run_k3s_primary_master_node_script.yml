@@ -1,23 +1,16 @@
+# run_k3s_primary_master_node_script.yml
 ---
 - name: Run K3s Primary Master Node Script
-  hosts: "{{ node_name }}"
+  hosts: "{{ master_node_ip_address }}"
   gather_facts: false
   tasks:
-    - name: Create /opt/k3s folder if it doesn't exist
-      file:
-        path: "/opt/k3s"
-        state: directory
-      delegate_to: localhost
+    - name: Run the script on the server
+      ansible.builtin.shell:
+        cmd: "/home/{{ username }}/{{ node_name }}.sh"
+      args:
+        stdout_callback: oneline
 
-    - name: Copy 1st_master_node.sh to the server
-      copy:
-        src: "/opt/k3s/1st_master_node.sh"
-        dest: "/opt/k3s/1st_master_node.sh"
 
-#    - name: Run the shell script on the server
-#      shell: "/opt/k3s/1st_master_node.sh"
-#      args:
-#        chdir: "/opt/k3s"
-#      delegate_to: localhost
+
 
 

@@ -23,15 +23,18 @@
         path: "{{ dest_file }}"
         mode: "775"
 
-  - meta: end_play
 
-- name: Run Create Node Shell Script
-  hosts: your_target_hosts
-  become: yes  
+    - name: Change file permissions of other_master_node.sh
+      become: true
+      file:
+        path: "{{ dest_file }}"
+        mode: "775"
+        owner: "{{ username }}"  # Set the owner here
+        group: "{{ username }}"  # Set the group here
 
-  vars:
-    dest_file: "/opt/k3s/{{ destination_file }}"
-
-  tasks:
-    - name: Execute the shell script
-      shell: "{{ dest_file }}"
+    - name: Copy file to remote host using SCP
+      ansible.builtin.command: >
+        sshpass -p "{{ password }}"
+        scp -o StrictHostKeyChecking=no -p "/opt/k3s/1st_master_node.sh"
+        "{{ username  }}@{{ master_node_ip_address}}:/home/{{ username }}"
+      delegate_to: localhost
