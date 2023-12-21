@@ -35,8 +35,8 @@
         script_path: "/opt/k3s/1st_master_node.sh"
         destination_path: "/opt/k3s/1st_master_node.sh"
 
-    - name: Run SCP script to copy 1st_master_node.sh
-      command: "{{ scp_script_path }}"
+#    - name: Run SCP script to copy 1st_master_node.sh
+#      command: "{{ scp_script_path }}"
 
 
 
