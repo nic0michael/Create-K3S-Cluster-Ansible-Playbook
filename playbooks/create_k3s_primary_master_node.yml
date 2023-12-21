@@ -48,7 +48,7 @@
 
     - name: Copy file to remote host using SCP
       ansible.builtin.shell: |
-        sshpass -p "{{ password }}" scp -o StrictHostKeyChecking=no "/opt/k3s/1st_master_node.sh" "{{ username }}@{{ master_node_ip }}:{{ scp_script_path }}"
+        sshpass -p "{{ password }}" scp -o StrictHostKeyChecking=no "/opt/k3s/1st_master_node.sh" "{{ username }}@{{ master_node_ip_address }}:{{ scp_script_path }}"
       delegate_to: localhost
 
 
