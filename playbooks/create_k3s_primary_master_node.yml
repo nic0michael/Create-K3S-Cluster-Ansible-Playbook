@@ -46,21 +46,10 @@
         group: "{{ username }}"  # Set the group here
         mode: "0775"
 
-#    - name: Copy file to remote host using SCP
-#      ansible.builtin.scp:
-#        src: "/opt/k3s/1st_master_node.sh"
-#        dest: "{{ scp_script_path }}" # use {{ssh_user}}@{{master_node_ip}}
-#        remote_user: {{ssh_user}}
-#        remote_passwd: {{ssh_password}}
-
     - name: Copy file to remote host using SCP
-      ansible.builtin.scp:
-        src: "/opt/k3s/1st_master_node.sh"
-        dest: "{{ scp_script_path }}"
-        remote_user: "{{ ssh_user }}"
-        remote_passwd: "{{ ssh_password }}"
-        # You might need to specify other options here as needed
-      delegate_to: "{{ ssh_user }}@{{ master_node_ip }}"
+      ansible.builtin.shell: |
+        sshpass -p "{{ ssh_password }}" scp -o StrictHostKeyChecking=no "/opt/k3s/1st_master_node.sh" "{{ ssh_user }}@{{ master_node_ip }}:{{ scp_script_path }}"
+      delegate_to: localhost
 
 
     # - name: Run SCP script to copy 1st_master_node.sh
