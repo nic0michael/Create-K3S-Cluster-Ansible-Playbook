@@ -1,0 +1,25 @@
+---
+- name: Run K3s Primary Master Node Script
+  hosts: "{{ node_name }}"
+  gather_facts: false
+  tasks:
+    - name: Create /opt/k3s folder if it doesn't exist
+      file:
+        path: "/opt/k3s"
+        state: directory
+      delegate_to: localhost
+
+    - name: Copy 1st_master_node.sh from Semaphore server to the host
+      fetch:
+        src: "/opt/k3s/1st_master_node.sh"
+        dest: "/opt/k3s/1st_master_node.sh"
+        flat: yes
+      delegate_to: leopard.loseyourip.com  # Delegate to the Semaphore server
+
+    - name: Run the shell script on the server
+      shell: "/opt/k3s/1st_master_node.sh"
+      args:
+        chdir: "/opt/k3s"
+      delegate_to: localhost
+
+
