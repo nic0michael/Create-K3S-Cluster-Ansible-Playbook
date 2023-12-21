@@ -54,7 +54,6 @@
 #        remote_passwd: {{ssh_password}}
 
     - name: Copy file to remote host using SCP
-    - name: Copy file to remote host using SCP
       ansible.builtin.scp:
         src: "/opt/k3s/1st_master_node.sh"
         dest: "{{ scp_script_path }}"
