@@ -2,6 +2,9 @@
 http://rino.kozow.com/devops/posts/create-k3s-cluster-ansible-playbook/ \
 On this page, we will provide a link to our YouTube video with instructions for creating this on your Proxmox Homelab
 
+**The Video showing how to do this** \
+https://youtu.be/ZD6X-lFsGiw
+
 
 We provide you with two options:
 1. Run the playbooks using commands from the terminal and values in the Inventory file and pass them as variables
