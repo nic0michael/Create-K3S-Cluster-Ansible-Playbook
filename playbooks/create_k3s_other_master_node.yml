@@ -8,7 +8,7 @@
     k3s_token: "{{ k3s_token }}"  # Set your K3S token here
     dest_file: "/opt/k3s/{{ destination_file }}"
   tasks:
-    - name: Execute k3s_node_maker.j2 template for OTHER_MASTER_NODE
+    - name: 1. Execute k3s_node_maker.j2 template for OTHER_MASTER_NODE
       template:
         src: ../templates/k3s_node_maker.j2
         dest: "{{ dest_file }}"
@@ -19,13 +19,7 @@
         master_node_ip_address: "{{ master_node_ip_address }}"
         k3s_token: "{{ k3s_token }}"
 
-    - name: Change file permissions of other_master_node.sh
-      become: true  # This will escalate privileges if required
-      file:
-        path: "{{ dest_file }}"
-        mode: "775"
-
-    - name: Change file permissions of other_master_node.sh
+    - name: 2. Change file permissions of other_master_node.sh
       become: true
       file:
         path: "{{ dest_file }}"
@@ -33,7 +27,7 @@
         owner: "{{ username }}"  # Set the owner here
         group: "{{ username }}"  # Set the group here
 
-    - name: SCP Copy file to {{ node_ip}}
+    - name: 3. SCP Copy file to {{ node_ip}}
       ansible.builtin.command: >
         sshpass -p "{{ password }}"
         scp -o StrictHostKeyChecking=no -p "/opt/k3s/1st_master_node.sh"
