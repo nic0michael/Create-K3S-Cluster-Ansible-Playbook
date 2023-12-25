@@ -33,7 +33,7 @@
         owner: "{{ username }}"  # Set the owner here
         group: "{{ username }}"  # Set the group here
 
-    - name: SCP Copy file
+    - name: SCP Copy file to {{ node_ip}}
       ansible.builtin.command: >
         sshpass -p "{{ password }}"
         scp -o StrictHostKeyChecking=no -p "/opt/k3s/1st_master_node.sh"
