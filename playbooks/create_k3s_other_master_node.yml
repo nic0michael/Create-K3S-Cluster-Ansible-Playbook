@@ -31,5 +31,5 @@
     - name: 3. SCP Copy file {{ source_file }} to {{ node_ip}}
       ansible.builtin.command: >
         sshpass -p "{{ password }}"
-        scp -o StrictHostKeyChecking=no -p "{{ source_file }}" "{{ username  }}@{{ node_ip}}:{{destination_folder}"
+        scp -o StrictHostKeyChecking=no -p "{{ source_file }}" "{{ username  }}@{{ node_ip}}:{{ destination_folder  }}"
       delegate_to: localhost
