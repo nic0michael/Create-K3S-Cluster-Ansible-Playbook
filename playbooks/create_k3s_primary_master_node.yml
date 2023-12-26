@@ -4,9 +4,6 @@
   vars:
     node_name: "{{ node_name }}"
     master_node_ip_address: "{{ master_node_ip_address }}"
-    source_file: "/opt/k3s/{{ destination_file }}"
-#    destination_folder: /home/}{{ username  }}
-    destination_folder: /opt/k3s/}{{ username  }}
     scp_script_path: "/opt/k3s/{{ scp_file }}"
     username: "{{ username }}"  # Define the username variable here
     dest_file: "{{ destination_file }}"
@@ -37,7 +34,7 @@
         owner: "{{ username }}"  # Set the owner here
         group: "{{ username }}"  # Set the group here
 
-    - name: 3. SCP Copy file  {{ source_file }} to {{ master_node_ip_address}}
+    - name: 3. SCP Copy file  {{ source_file }} to {{ node_ip}}:{{destination_folder}}
       ansible.builtin.command: >
         sshpass -p "{{ password }}"
         scp -o StrictHostKeyChecking=no -p "{{ source_file }}" "{{ username  }}@{{ node_ip}}:{{destination_folder}}"
