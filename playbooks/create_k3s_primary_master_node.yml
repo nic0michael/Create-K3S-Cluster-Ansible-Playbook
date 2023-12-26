@@ -9,7 +9,15 @@
     destination_folder: /opt/k3s/}{{ username  }}
     scp_script_path: "/opt/k3s/{{ scp_file }}"
     username: "{{ username }}"  # Define the username variable here
+    dest_file: "{{ destination_file }}"
+    destination_folder: /opt/k3s/}"
+
   tasks:
+
+    - name: Create more variables
+      set_fact:
+        source_file: "/opt/k3s/{{ dest_file }}"
+
     - name: 1. Execute k3s_node_maker.j2 template for 1ST_MASTER_NODE - {{ source_file }}
       template:
         src: ../templates/k3s_node_maker.j2
@@ -31,6 +39,5 @@
     - name: 3. SCP Copy file  {{ source_file }} to {{ master_node_ip_address}}
       ansible.builtin.command: >
         sshpass -p "{{ password }}"
-        scp -o StrictHostKeyChecking=no -p "/{{ source_file }}"
-        "{{ username  }}@{{ master_node_ip_address}}:{{ destination_folder  }}"
+        scp -o StrictHostKeyChecking=no -p "{{ source_file }}" "{{ username  }}@{{ node_ip}}:{{destination_folder}}"
       delegate_to: localhost

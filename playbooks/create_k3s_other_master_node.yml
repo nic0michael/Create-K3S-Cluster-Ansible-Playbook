@@ -6,9 +6,15 @@
     node_name: "{{ node_name }}"
     master_node_ip_address: "{{ master_node_ip_address }}"
     k3s_token: "{{ k3s_token }}"  # Set your K3S token here
-    source_file: "/opt/k3s/{{ destination_file }}"
-    destination_folder: /opt/k3s/}{{ username  }}
+    dest_file: "{{ destination_file }}"
+    destination_folder: /opt/k3s/}"
+
   tasks:
+
+    - name: Create more variables
+      set_fact:
+        source_file: "/opt/k3s/{{ dest_file }}"
+
     - name: 1. Execute k3s_node_maker.j2 template for OTHER_MASTER_NODE - {{ source_file }}
       template:
         src: ../templates/k3s_node_maker.j2
@@ -31,5 +37,5 @@
     - name: 3. SCP Copy file {{ source_file }} to {{ node_ip}}
       ansible.builtin.command: >
         sshpass -p "{{ password }}"
-        scp -o StrictHostKeyChecking=no -p "{{ source_file }}" "{{ username  }}@{{ node_ip}}:{{ destination_folder  }}"
+        scp -o StrictHostKeyChecking=no -p "{{ source_file }}" "{{ username  }}@{{ node_ip}}:{{destination_folder}}"
       delegate_to: localhost
