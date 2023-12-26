@@ -5,7 +5,8 @@
     node_name: "{{ node_name }}"
     master_node_ip_address: "{{ master_node_ip_address }}"
     source_file: "/opt/k3s/{{ destination_file }}"
-    destination_folder: /home/}{{ username  }}
+#    destination_folder: /home/}{{ username  }}
+    destination_folder: /opt/k3s/}{{ username  }}
     scp_script_path: "/opt/k3s/{{ scp_file }}"
     username: "{{ username }}"  # Define the username variable here
   tasks:
