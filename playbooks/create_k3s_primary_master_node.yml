@@ -7,7 +7,7 @@
     scp_script_path: "/opt/k3s/{{ scp_file }}"
     username: "{{ username }}"  # Define the username variable here
     dest_file: "{{ destination_file }}"
-    destination_folder: "home/{{username}}" #"/opt/k3s/}"
+    destination_folder: "/home/{{username}}/" #"/opt/k3s/}"
     node_ip: "{{master_node_ip_address}}"
 
   tasks:
