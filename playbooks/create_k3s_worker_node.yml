@@ -11,9 +11,7 @@
     node_ip: "{{node_ip}}"
 
   tasks:
-
-    - name: Create more variables
-
+    
     - name: Create more variables
       set_fact:
         source_file: "/opt/k3s/{{ dest_file }}"
