@@ -7,7 +7,7 @@
     master_node_ip_address: "{{ master_node_ip_address }}"
     k3s_token: "{{ k3s_token }}"  # Set your K3S token here
     dest_file: "{{ destination_file }}"
-    destination_folder: /opt/k3s/}"
+    destination_folder: "/opt/k3s/}"
 
 tasks:
 
