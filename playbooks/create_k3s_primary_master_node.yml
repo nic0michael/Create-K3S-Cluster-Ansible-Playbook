@@ -11,6 +11,7 @@
     username: "{{ username }}"  # Define the username variable here
     dest_file: "{{ destination_file }}"
     destination_folder: /opt/k3s/}"
+    node_ip: "{{master_node_ip_address}}"
 
   tasks:
 
