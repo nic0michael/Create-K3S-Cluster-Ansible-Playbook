@@ -6,12 +6,13 @@
     node_name: "{{ node_name }}"
     master_node_ip_address: "{{ master_node_ip_address }}"
     k3s_token: "{{ k3s_token }}"  # Set your K3S token here
-    dest_file: "/opt/k3s/{{ destination_file }}"
+    source_file: "/opt/k3s/{{ destination_file }}"
+    destination_folder: /home/}{{ username  }}
   tasks:
-    - name: 1. Execute k3s_node_maker.j2 template for OTHER_MASTER_NODE - {{ dest_file }}
+    - name: 1. Execute k3s_node_maker.j2 template for OTHER_MASTER_NODE - {{ source_file }}
       template:
         src: ../templates/k3s_node_maker.j2
-        dest: "{{ dest_file }}"
+        dest: "{{ source_file }}"
       vars:
         node_type: "{{ node_type }}"
         node_name: "{{ node_name }}"
@@ -19,16 +20,16 @@
         master_node_ip_address: "{{ master_node_ip_address }}"
         k3s_token: "{{ k3s_token }}"
 
-    - name: 2. Change file permissions of other_master_node.sh - {{ dest_file }}
+    - name: 2. Change file permissions of other_master_node.sh - {{ source_file }}
       become: true
       file:
-        path: "{{ dest_file }}"
+        path: "{{ source_file }}"
         mode: "775"
         owner: "{{ username }}"  # Set the owner here
         group: "{{ username }}"  # Set the group here
 
-    - name: 3. SCP Copy file {{ dest_file }} to {{ node_ip}}
+    - name: 3. SCP Copy file {{ source_file }} to {{ node_ip}}
       ansible.builtin.command: >
         sshpass -p "{{ password }}"
-        scp -o StrictHostKeyChecking=no -p "{{ dest_file }}" "{{ username  }}@{{ node_ip}}:/home/{{ username  }}"
+        scp -o StrictHostKeyChecking=no -p "{{ source_file }}" "{{ username  }}@{{ node_ip}}:{{destination_folder}"
       delegate_to: localhost
