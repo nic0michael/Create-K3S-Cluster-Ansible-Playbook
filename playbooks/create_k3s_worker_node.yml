@@ -7,9 +7,12 @@
     master_node_ip_address: "{{ master_node_ip_address }}"
     k3s_token: "{{ k3s_token }}"  # Set your K3S token here
     dest_file: "{{ destination_file }}"
-    destination_folder: "/opt/k3s/}"
+    destination_folder: "/opt/k3s/" #"/home/{{username}}/" #"/opt/k3s/}"
+    node_ip: "{{node_ip}}"
 
-tasks:
+  tasks:
+
+    - name: Create more variables
 
     - name: Create more variables
       set_fact:
