@@ -35,7 +35,7 @@
         owner: "{{ username }}"  # Set the owner here
         group: "{{ username }}"  # Set the group here
 
-    - name: 3. SCP Copy file  {{ source_file }} to {{ node_ip}}:{{destination_folder}}
+    - name: 3. SCP Copy file  {{ source_file }} to {{ username  }}@{{{ node_ip}}:{{destination_folder}}
       ansible.builtin.command: >
         sshpass -p "{{ password }}"
         scp -o StrictHostKeyChecking=no -p "{{ source_file }}" "{{ username  }}@{{ node_ip}}:{{destination_folder}}"
