@@ -7,7 +7,8 @@
     master_node_ip_address: "{{ master_node_ip_address }}"
     k3s_token: "{{ k3s_token }}"  # Set your K3S token here
     dest_file: "{{ destination_file }}"
-    destination_folder: ""/opt/k3s/}"
+    destination_folder: "/opt/k3s/" #"/home/{{username}}/" #"/opt/k3s/}"
+    node_ip: "{{node_ip}}"
 
   tasks:
 
@@ -34,7 +35,7 @@
         owner: "{{ username }}"  # Set the owner here
         group: "{{ username }}"  # Set the group here
 
-    - name: 3. SCP Copy file {{ source_file }} to {{ node_ip}}
+    - name: 3. SCP Copy file  {{ source_file }} to {{ node_ip}}:{{destination_folder}}
       ansible.builtin.command: >
         sshpass -p "{{ password }}"
         scp -o StrictHostKeyChecking=no -p "{{ source_file }}" "{{ username  }}@{{ node_ip}}:{{destination_folder}}"
