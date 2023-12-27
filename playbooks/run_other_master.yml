@@ -4,6 +4,9 @@
   hosts: other_master_nodes
   gather_facts: false
 
+  vars_files:
+    - user_credentials.yml
+
   tasks:
     - name: Execute command as nickm using sudo
       command: whoami
