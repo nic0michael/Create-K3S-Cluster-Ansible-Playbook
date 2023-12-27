@@ -16,8 +16,10 @@
         username:  "{{ username }}"
         password: "{{ password }}"
 
-    - name: check user
+    - name: Execute command as specific user with password
+      expect:
+        command: whoami
+        responses:
+          Password: "{{ password }}"
       become: true
-      remote_user: "{{ username }}"
-      remote_user_password: "{{ password }}"
-      shell: whoami
+      become_user: "{{ username }}
