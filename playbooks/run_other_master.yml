@@ -8,11 +8,7 @@
     - user_credentials.yml
 
   tasks:
-    - name: Execute command with user credentials
-      expect:
-        command: whoami
+    - name: Execute command as root using sudo
+      command: whoami
       become: true
       become_user: root
-      #"{{ credentials.username }}"
-      vars:
-        ansible_ssh_pass: "{{ credentials.password }}"
