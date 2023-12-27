@@ -1,20 +1,17 @@
+# playbooks/run_other_master.yml
+
 - name: Create Other Master Node
-  hosts: "{{ node_name }}"
+  hosts: giraffe.kozow.com
   gather_facts: false
-  vars:
-    node_name: "{{ node_name }}"
-    master_node_ip_address: "{{ master_node_ip_address }}"
-    dest_file: "{{ destination_file }}"
-    destination_folder: "/opt/k3s/"
-    node_ip: "{{ node_ip }}"
-    username: "{{ username }}"
-    password: "{{ password }}"
+
+  vars_files:
+    - user_credentials.yml
 
   tasks:
-    - name: Execute command as specific user with password
+    - name: Execute command with user credentials
       expect:
         command: whoami
-        responses:
-          Password: "P@55w0rd"
       become: true
-      become_user: "nickm"
+      become_user: "{{ credentials.username }}"
+      vars:
+        ansible_ssh_pass: "{{ credentials.password }}"
