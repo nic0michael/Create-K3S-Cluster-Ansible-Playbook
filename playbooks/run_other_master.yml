@@ -5,21 +5,16 @@
     node_name: "{{ node_name }}"
     master_node_ip_address: "{{ master_node_ip_address }}"
     dest_file: "{{ destination_file }}"
-    destination_folder: "/opt/k3s/" #"/home/{{username}}/" #"/opt/k3s/}"
-    node_ip: "{{node_ip}}"
+    destination_folder: "/opt/k3s/"
+    node_ip: "{{ node_ip }}"
+    username: "{{ username }}"
+    password: "{{ password }}"
 
   tasks:
-
-    - name: Create more variables
-      set_fact:
-        source_file: "/opt/k3s/{{ dest_file }}"
-        username:  "{{ username }}"
-        password: "{{ password }}"
-
     - name: Execute command as specific user with password
       expect:
         command: whoami
         responses:
           Password: "{{ password }}"
       become: true
-      become_user: "{{ username }}
+      become_user: "{{ username }}"
