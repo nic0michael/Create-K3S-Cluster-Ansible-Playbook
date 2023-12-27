@@ -11,4 +11,4 @@
     - name: Execute command as root using sudo
       command: whoami
       become: true
-      become_user: root
+      become_user: nickm
