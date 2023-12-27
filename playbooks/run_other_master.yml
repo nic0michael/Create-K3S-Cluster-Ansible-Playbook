@@ -1,7 +1,7 @@
 # playbooks/run_other_master.yml
 
-- name: Create Other Master Node
-  hosts: giraffe.kozow.com
+- name: Create Other Master NodeS
+  hosts: other_master_nodes
   gather_facts: false
 
   vars_files:
