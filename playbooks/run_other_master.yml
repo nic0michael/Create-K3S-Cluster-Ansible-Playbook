@@ -12,6 +12,7 @@
       expect:
         command: whoami
       become: true
-      become_user: "{{ credentials.username }}"
+      become_user: root
+      #"{{ credentials.username }}"
       vars:
         ansible_ssh_pass: "{{ credentials.password }}"
