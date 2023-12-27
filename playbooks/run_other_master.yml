@@ -14,8 +14,10 @@
       set_fact:
         source_file: "/opt/k3s/{{ dest_file }}"
         username:  "{{ username }}"
+        password: "{{ password }}"
 
     - name: check user
       become: true
       remote_user: "{{ username }}"
+      remote_user_password: "{{ password }}"
       shell: whoami
