@@ -1,8 +1,7 @@
 # playbooks/run_other_master.yml
 
 # Please dont use this I have not got it working
-
-- name: Create Other Master NodeS
+- name: Create Other Master Nodes
   hosts: other_master_nodes
   gather_facts: false
 
@@ -10,7 +9,14 @@
     - user_credentials.yml
 
   tasks:
+    - name: Add server SSH key to known_hosts
+      known_hosts:
+        name: "{{ inventory_hostname }}"
+        key: "{{ server_users.ssh_public_key }}"
+        path: "/home/{{ server_users.username }}/.ssh/known_hosts"
+        state: present
+
     - name: Execute command as nickm using sudo
       command: whoami
       become: true
-      become_user: nickm
+      become_user: "{{ server_users.username }}"
