@@ -1,13 +1,13 @@
 # playbooks/run_other_master.yml
 
 # Please dont use this I have not got it working
-- name: Your Ansible Playbook
-  hosts: all
+
+---
+- hosts: all
+
   become: true
 
-
   tasks:
-
     - name: APT Package Updater
       apt:
         upgrade: yes
