@@ -5,13 +5,16 @@
   hosts: other_master_nodes
   gather_facts: false
   vars:
-    ansible_ssh_private_key_file: "{{ lookup('env', 'SSH_PRIVATE_KEY') }}"
+    inventory_hostname: "other_master_nodes"
+
+  vars_files:
+    - /path/to/your/credentials_file.yml  # Include the file with server_users variable
 
   tasks:
     - name: Add server SSH key to known_hosts
       known_hosts:
         name: "{{ inventory_hostname }}"
-        key: "{{ server_users.ssh_public_key }}"  # Replace with your public key variable
+        key: "{{ server_users.ssh_public_key }}"
         path: "/home/{{ server_users.username }}/.ssh/known_hosts"
         state: present
 
