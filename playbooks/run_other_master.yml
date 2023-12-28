@@ -2,7 +2,7 @@
 
 # Please dont use this I have not got it working
 - name: Your Ansible Playbook
-  hosts: other_master_nodes
+  hosts: all
   become: true
 
 
