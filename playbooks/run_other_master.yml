@@ -1,18 +1,17 @@
 # playbooks/run_other_master.yml
 
 # Please dont use this I have not got it working
-- name: Create Other Master Nodes
-  hosts: other_master_nodes
+- name: Your Ansible Playbook
+  hosts: your_hosts
   gather_facts: false
-
-  vars_files:
-    - user_credentials.yml
+  vars:
+    ansible_ssh_private_key_file: "{{ lookup('env', 'SSH_PRIVATE_KEY') }}"
 
   tasks:
     - name: Add server SSH key to known_hosts
       known_hosts:
         name: "{{ inventory_hostname }}"
-        key: "{{ server_users.ssh_public_key }}"
+        key: "{{ server_users.ssh_public_key }}"  # Replace with your public key variable
         path: "/home/{{ server_users.username }}/.ssh/known_hosts"
         state: present
 
