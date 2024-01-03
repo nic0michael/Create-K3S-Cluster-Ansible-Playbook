@@ -2,7 +2,7 @@
 
 ---
 - hosts: all_active_nodes
-
+  remote_user: root
   become: true
 
   tasks:
