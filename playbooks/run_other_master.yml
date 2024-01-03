@@ -3,7 +3,7 @@
 # Please dont use this I have not got it working
 
 ---
-- hosts: all
+- hosts: all_active_nodes
 
   become: true
 
