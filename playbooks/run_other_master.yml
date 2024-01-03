@@ -1,7 +1,5 @@
 # playbooks/run_other_master.yml
 
-# Please dont use this I have not got it working
-
 ---
 - hosts: all_active_nodes
 
