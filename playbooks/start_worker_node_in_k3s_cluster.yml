@@ -7,8 +7,3 @@
   tasks:
     - name: Run commands from 1stworker_node.sh
       shell: "bash /opt/k3s/1stworker_node.sh"
-      register: script_output
-
-    - name: Display output of 1stworker_node.sh
-      debug:
-        var: script_output.stdout_lines
