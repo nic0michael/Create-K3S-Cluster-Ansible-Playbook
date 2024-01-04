@@ -1,0 +1,7 @@
+---
+- name: Execute 1stworker_node.sh on worker_nodes as root
+  hosts: worker_nodes
+  become: true
+  tasks:
+    - name: Run 1stworker_node.sh script
+      script: /opt/k3s/1stworker_node.sh

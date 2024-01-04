@@ -1,0 +1,7 @@
+---
+- name: Execute 2nd_master_node.sh on other_master_nodes as root
+  hosts: other_master_nodes
+  become: true
+  tasks:
+    - name: Run 2nd_master_node.sh script
+      script: /opt/k3s/2nd_master_node.sh
