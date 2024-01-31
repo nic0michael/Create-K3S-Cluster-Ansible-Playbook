@@ -3,7 +3,7 @@
   gather_facts: false
 
   vars_files:
-    - ../../vars/primary_master_node_variables.yml
+    - ../vars/primary_master_node_variables.yml
 
   tasks:
 
